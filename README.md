@@ -269,7 +269,7 @@ Download and install these applications from their official websites:
 
 | 🛠️ Application | 📝 Purpose | 🔗 Download |
 |:---|:---|:---|
-| **Comet** | Email client | [Official Website](https://www.cometapp.com/) |
+| **PeekX** | Folder Preview | [Official Website](https://github.com/altic-dev/PeekX) |
 | **VMware Fusion** | Virtualization software | [Official Website](https://www.vmware.com/products/fusion.html) |
 
 ---
@@ -282,7 +282,6 @@ Automate the whole process of setting up the mac.
 | **Pixelmator** | Image editing |
 | **Photomator** | Photo editing |
 | **SerialTool** | Serial communication |
-| **Folder Preview** | Quick folder previews (Paid) |
 | **Command X** | Advanced clipboard (Paid) |
 
 ### 🐍 Development & Data Science
