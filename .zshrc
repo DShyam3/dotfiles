@@ -37,9 +37,9 @@ eval "$(fzf --zsh)"   # fzf keybindings (Ctrl+R, Ctrl+T, etc)
 
 # Aliases
 alias cat="bat"
-alias ls="eza --color=always --long --icons=always --no-permissions --no-user --all"
-alias lsa="eza --color=always --long --icons=always --no-permissions --no-user --total-size --all"
-alias lst='eza --color=always --long --icons=always --no-permissions --no-user --total-size --all --tree'
+alias ls="eza --color=always --long --icons=always --no-permissions --time-style=long-iso --all"
+alias lsa="eza --color=always --long --icons=always --no-permissions --time-style=long-iso --total-size --all"
+alias lst='eza --color=always --long --icons=always --no-permissions --time-style=long-iso --total-size --all --tree'
 alias cl="clear"
 
 # History
