@@ -41,6 +41,26 @@ alias ls="eza --color=always --long --icons=always --no-permissions --time-style
 alias lsa="eza --color=always --long --icons=always --no-permissions --time-style=long-iso --total-size --all"
 alias lst='eza --color=always --long --icons=always --no-permissions --time-style=long-iso --total-size --all --tree'
 alias cl="clear"
+alias ga="git add"
+alias gb="git branch"
+alias gc="git commit"
+alias gcl="git clone" 
+alias gco="git checkout"
+alias gd="git diff"
+alias gf="git fetch"
+alias gl="git pull" 
+alias gm="git merge"
+alias gp="git push"
+alias grs="git restore"
+alias gsu="git submodule update"
+alias gst="git status" 
+alias gsta="git stash" 
+alias gsw="git switch"
+alias tm="tmux"
+alias tmls="tmux ls" 
+alias tma="tmux attach-session -t"
+alias tmn="tmux new-session -t"
+alias tmk="tmux kill-session -t"
 
 # History
 HISTSIZE=5000
@@ -65,3 +85,15 @@ fpath=(/Users/dhyanshyam/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+. "$HOME/.local/bin/env"
+
+# Added by Antigravity
+export PATH="/Users/dhyanshyam/.antigravity/antigravity/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/dhyanshyam/.antigravity/antigravity/bin:$PATH"
+. "$HOME/.cargo/env"
+
+. "$HOME/.dora/bin/env"
+source "$HOME/.dora/bin/env"
