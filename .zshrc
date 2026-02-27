@@ -1,46 +1,77 @@
-# Zinit (minimal setup)
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+# --- 1. Environment & Paths ---
+export PATH="$HOME/.pixi/bin:$HOME/.antigravity/antigravity/bin:$PATH"
+export EDITOR="cursor"
+
+# Source Tool Envs
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+[ -f "$HOME/.dora/bin/env" ] && . "$HOME/.dora/bin/env"
+
+# --- 2. Zinit Initialization ---
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Zinit Plugins (Turbo)
-# Autosuggestions
-zinit light-mode for \
-    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    wait lucid \
-    zsh-users/zsh-autosuggestions
+# --- 3. Zinit Plugins ---
 
-# Completions
-zinit light-mode for \
-    wait lucid \
-    zsh-users/zsh-completions
+# Load completions and autosuggestions
+zinit ice wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay"
+zinit light zsh-users/zsh-autosuggestions
 
-# fzf-tab
-zinit light-mode for \
-    wait lucid \
-    Aloxaf/fzf-tab
+zinit ice wait lucid
+zinit light zsh-users/zsh-completions
 
-# Syntax highlighting (must load last)
-zinit light-mode for \
-    wait lucid atload"_zsh_highlight" \
-    zsh-users/zsh-syntax-highlighting
+zinit ice wait lucid
+zinit light Aloxaf/fzf-tab
 
-# Oh My Posh (Prompt)
+# Syntax highlighting - Loaded slightly differently to fix the $region_highlight error
+zinit ice wait"0" lucid atinit"zpcompinit; zpcdreplay"
+zinit light zsh-users/zsh-syntax-highlighting
+
+# --- 4. Prompt & Tools ---
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.toml)"
-
-# Path & Tools
-export PATH="$HOME/.pixi/bin:$PATH"
-export EDITOR="cursor"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(mamba shell hook --shell zsh)"
-eval "$(fzf --zsh)"   # fzf keybindings (Ctrl+R, Ctrl+T, etc)
+eval "$(fzf --zsh)"
 
-# Aliases
+# --- 5. History Configuration ---
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+
+setopt appendhistory       
+setopt sharehistory        
+setopt incappendhistory    
+setopt hist_ignore_dups    
+setopt hist_ignore_space   
+setopt hist_save_no_dups   
+setopt hist_find_no_dups   
+
+# --- 6. Completion Styling & Docker ---
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# Docker completions
+fpath=(/Users/dhyanshyam/.docker/completions $fpath)
+autoload -Uz compinit && compinit
+
+# --- 7. Aliases ---
 alias cat="bat"
-alias ls="eza --color=always --long --icons=always --no-permissions --time-style=long-iso --all"
-alias lsa="eza --color=always --long --icons=always --no-permissions --time-style=long-iso --total-size --all"
-alias lst='eza --color=always --long --icons=always --no-permissions --time-style=long-iso --total-size --all --tree'
 alias cl="clear"
+alias tm="tmux"
+alias tmls="tmux ls" 
+alias tma="tmux attach-session -t"
+alias tmn="tmux new-session -t"
+alias tmk="tmux kill-session -t"
+
+# Eza (Improved ls)
+alias ls="eza --color=always --long --icons=always --no-permissions --time-style=long-iso --all"
+alias ll="eza --color=always --long --icons=always --time-style=long-iso --total-size --all"
+alias lst='eza --color=always --long --icons=always --no-permissions --time-style=long-iso --total-size --all --tree'
+
+# Git
 alias ga="git add"
 alias gb="git branch"
 alias gc="git commit"
@@ -56,44 +87,3 @@ alias gsu="git submodule update"
 alias gst="git status" 
 alias gsta="git stash" 
 alias gsw="git switch"
-alias tm="tmux"
-alias tmls="tmux ls" 
-alias tma="tmux attach-session -t"
-alias tmn="tmux new-session -t"
-alias tmk="tmux kill-session -t"
-
-# History
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
-
-# Better history handling
-setopt appendhistory       # append instead of overwrite
-setopt sharehistory        # share across sessions
-setopt incappendhistory    # save immediately
-setopt hist_ignore_dups    # ignore consecutive duplicates
-setopt hist_ignore_space   # ignore commands starting with a space
-setopt hist_save_no_dups   # don’t save duplicates to file
-setopt hist_find_no_dups   # skip duplicates in search
-
-# Completion Styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/dhyanshyam/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
-
-. "$HOME/.local/bin/env"
-
-# Added by Antigravity
-export PATH="/Users/dhyanshyam/.antigravity/antigravity/bin:$PATH"
-
-# Added by Antigravity
-export PATH="/Users/dhyanshyam/.antigravity/antigravity/bin:$PATH"
-. "$HOME/.cargo/env"
-
-. "$HOME/.dora/bin/env"
-source "$HOME/.dora/bin/env"

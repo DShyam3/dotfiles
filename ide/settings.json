@@ -1,0 +1,79 @@
+{
+    // --- Appearance & Layout ---
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "none",
+    "workbench.sideBar.location": "right",
+    "workbench.activityBar.location": "bottom",
+    "workbench.layoutControl.enabled": false,
+    "window.zoomLevel": -0.5,
+    "window.autoDetectHighContrast": false,
+    "window.commandCenter": false,
+    "breadcrumbs.enabled": true,
+    // --- Explorer (Minimalist) ---
+    "explorer.openEditors.visible": 0,
+    "explorer.autoReveal": true,
+    "explorer.compactFolders": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmPasteNative": false,
+    "workbench.tree.indent": 12,
+    "workbench.tree.renderIndentGuides": "none",
+    "material-icon-theme.hidesExplorerArrows": true,
+    // --- Editor Aesthetics ---
+    "editor.minimap.enabled": true,
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.scrollbar.vertical": "hidden",
+    "editor.overviewRulerBorder": false,
+    "editor.renderLineHighlight": "gutter",
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.smoothScrolling": true,
+    "editor.lineNumbers": "on",
+    "editor.renderWhitespace": "none",
+    "editor.foldingHighlight": false,
+    "editor.matchBrackets": "always",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.indentation": false,
+    "editor.stickyScroll.enabled": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.rulers": [
+        80
+    ],
+    // --- Typography (JetBrains Mono) ---
+    "editor.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace",
+    "editor.fontSize": 14,
+    "editor.fontWeight": "400",
+    "editor.lineHeight": 1.6,
+    "editor.fontLigatures": true,
+    // --- Terminal (External: Kitty) ---
+    "terminal.explorerKind": "external",
+    "terminal.external.osxExec": "kitty.app",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+    // --- Productivity & Behavior ---
+    "editor.inlineSuggest.enabled": true,
+    "editor.formatOnSave": true,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 100,
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
+    },
+    "editor.parameterHints.enabled": false,
+    "editor.inlayHints.enabled": "off",
+    // --- Languages & Extensions ---
+    "python.languageServer": "Default",
+    "[python]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    },
+    "markdown.preview.scrollEditorWithPreview": true,
+    "markdown.preview.scrollPreviewWithEditor": true,
+    "git.blame.ignoreWhitespace": true,
+    "search.showLineNumbers": true
+}
