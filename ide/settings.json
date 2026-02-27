@@ -4,7 +4,7 @@
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "none",
     "workbench.sideBar.location": "right",
-    "workbench.activityBar.location": "bottom",
+    "workbench.activityBar.location": "default",
     "workbench.layoutControl.enabled": false,
     "window.zoomLevel": -0.5,
     "window.autoDetectHighContrast": false,
