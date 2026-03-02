@@ -36,6 +36,7 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.indentation": false,
   "editor.stickyScroll.enabled": true,
+  "editor.formatOnPaste": true,
 
   // --- Typography ---
   "editor.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace",
