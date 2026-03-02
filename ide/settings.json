@@ -1,5 +1,5 @@
 {
-  // --- Appearance & Layout (Minimalist) ---
+  // --- Appearance & Layout ---
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "none",
@@ -26,7 +26,7 @@
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
   "editor.overviewRulerBorder": false,
-  "editor.renderLineHighlight": "gutter", // Only highlights the line number area
+  "editor.renderLineHighlight": "gutter",
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.smoothScrolling": true,
@@ -37,14 +37,23 @@
   "editor.guides.indentation": false,
   "editor.stickyScroll.enabled": true,
 
-  // --- Typography (JetBrains Mono) ---
+  // --- Typography ---
   "editor.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace",
   "editor.fontSize": 14,
   "editor.fontWeight": "400",
   "editor.lineHeight": 1.6,
   "editor.fontLigatures": true,
 
-  // --- Formatting & Standard 88 (Ruff/Prettier) ---
+  // --- Files & Terminal ---
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "terminal.explorerKind": "external",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+
+  // --- Formatting ---
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.rulers": [88],
@@ -59,26 +68,17 @@
     "editor.insertSpaces": true,
     "editor.codeActionsOnSave": {
       "source.fixAll.ruff": "explicit",
-      "source.organizeImports.ruff": "explicit"
-    }
+      "source.organizeImports.ruff": "explicit",
+    },
   },
   "[markdown]": {
     "editor.wordWrap": "on",
     "editor.renderWhitespace": "none",
-    "editor.unicodeHighlight.ambiguousCharacters": false
+    "editor.unicodeHighlight.ambiguousCharacters": false,
   },
-
-  // --- Files & Terminal ---
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 1000,
-  "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true,
-  "terminal.explorerKind": "external",
-  "terminal.integrated.fontSize": 14,
-  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
 
   // --- Extension Specifics ---
   "prettier.printWidth": 88,
   "prettier.singleQuote": true,
-  "python.languageServer": "Default"
+  "python.languageServer": "Default",
 }
