@@ -54,14 +54,14 @@
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
 
-  // --- Formatting ---
+  /// --- Formatting ---
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.rulers": [88],
+  "editor.rulers": [80],
   "editor.wordWrap": "wordWrapColumn",
-  "editor.wordWrapColumn": 88,
+  "editor.wordWrapColumn": 80,
   "editor.wrappingIndent": "indent",
 
   // --- Language Specifics ---
@@ -70,17 +70,19 @@
     "editor.tabSize": 4,
     "editor.codeActionsOnSave": {
       "source.fixAll.ruff": "explicit",
-      "source.organizeImports.ruff": "explicit"
-    }
+      "source.organizeImports.ruff": "explicit",
+    },
   },
   "[markdown]": {
     "editor.wordWrap": "on",
     "editor.renderWhitespace": "none",
-    "editor.unicodeHighlight.ambiguousCharacters": false
+    "editor.unicodeHighlight.ambiguousCharacters": false,
   },
 
   // --- Extension Specifics ---
-  "prettier.printWidth": 88,
+  "rewrap.wrappingColumn": 80,
+  "rewrap.doubleSentenceSpacing": false,
+  "prettier.printWidth": 80,
   "prettier.singleQuote": true,
-  "python.languageServer": "Default"
+  "python.languageServer": "Default",
 }
