@@ -18,7 +18,9 @@
 | **Execution** | Code Runner |
 | **Web Dev** | Live Server |
 | **Container** | Docker |
+| **Container** | Container Tools |
 | **Viewer** | 3D Viewer |
 | **Viewer** | PDF Viewer |
 | **Viewer** | Code Counter |
+| **Git** | GitLens |
 ---
