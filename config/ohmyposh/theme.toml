@@ -43,41 +43,19 @@ version = 3
   [[blocks.segments]]
     type = "git"
     style = "plain"
-    template = " {{ .HEAD }} "
+    template = "{{ .HEAD }}{{ if or (.Ahead) (.Behind) }} ⇅{{ end }} "
     foreground = "#cba6f7"
     foreground_templates = [
       "{{ if and (not .Working.Changed) (not .Staging.Changed) (eq .Ahead 0) (eq .Behind 0) }}#a6e3a1{{ end }}",
       "{{ if or (.Working.Changed) (.Staging.Changed) }}#fab387{{ end }}",
       "{{ if or (gt .Ahead 0) (gt .Behind 0) }}#f38ba8{{ end }}"
     ]
+    [blocks.segments.properties]
+      fetch_status = true
 
 [[blocks]]
   type = "prompt"
   alignment = "right"
-
-  [[blocks.segments]]
-    type = "python"
-    style = "plain"
-    foreground = "#f9e2af"
-    template = " {{ .Venv }} {{ .Full }} "
-
-  [[blocks.segments]]
-    type = "node"
-    style = "plain"
-    foreground = "#a6e3a1"
-    template = " {{ .Full }} "
-
-  [[blocks.segments]]
-    type = "container"
-    style = "plain"
-    foreground = "#89b4fa"
-    template = " "
-
-  [[blocks.segments]]
-    type = "swift"
-    style = "plain"
-    foreground = "#f38ba8"
-    template = "ﯣ {{ .Full }} "
 
   [[blocks.segments]]
     type = "executiontime"
@@ -114,4 +92,4 @@ version = 3
 [transient_prompt]
 background = "transparent"
 foreground = "#ffffff"
-template = "{{ if eq .Code 0 }}<#89b4fa>❯ </>{{ else }}<#f38ba8>❯ </>{{ end }}"
+template = "{{ if gt .Segments.Executiontime.Ms 0 }}<#a6adc8>[{{ .Segments.Executiontime.FormattedMs }}] </>{{ end }}{{ if eq .Code 0 }}<#89b4fa>❯ </>{{ else }}<#f38ba8>❯ </>{{ end }}"
