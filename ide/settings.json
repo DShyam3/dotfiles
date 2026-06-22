@@ -12,7 +12,7 @@
   "breadcrumbs.enabled": true,
 
   // --- Explorer ---
-  "explorer.openEditors.visible": 0,
+  "explorer.openEditors.visible": 1,
   "explorer.autoReveal": true,
   "explorer.compactFolders": false,
   "explorer.confirmDelete": false,
@@ -84,5 +84,5 @@
   "rewrap.doubleSentenceSpacing": false,
   "prettier.printWidth": 80,
   "prettier.singleQuote": true,
-  "python.languageServer": "Default",
+  "python.languageServer": "Default"
 }

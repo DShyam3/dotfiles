@@ -67,7 +67,6 @@ alias tmn="tmux new-session -t"
 alias tmk="tmux kill-session -t"
 
 # Eza (Improved ls)
-alias ls="eza --color=always --long --icons=always --no-permissions --time-style=long-iso --all"
 alias ll="eza --color=always --long --icons=always --time-style=long-iso --total-size --all"
 alias lst='eza --color=always --long --icons=always --no-permissions --time-style=long-iso --total-size --all --tree'
 
@@ -87,3 +86,6 @@ alias gsu="git submodule update"
 alias gst="git status" 
 alias gsta="git stash" 
 alias gsw="git switch"
+
+# Added by Antigravity IDE
+export PATH="/Users/dhyanshyam/.antigravity-ide/antigravity-ide/bin:$PATH"
