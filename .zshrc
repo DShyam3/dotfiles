@@ -1,7 +1,6 @@
 # --- 1. Environment & Paths ---
 export PATH="$HOME/.pixi/bin:$HOME/.antigravity/antigravity/bin:$PATH"
 export EDITOR="cursor"
-
 # Added by Antigravity IDE
 export PATH="/Users/dhyanshyam/.antigravity-ide/antigravity-ide/bin:$PATH"
 
@@ -33,16 +32,16 @@ zinit ice wait"0" lucid atinit"zpcompinit; zpcdreplay"
 zinit light zsh-users/zsh-syntax-highlighting
 
 # --- 4. Prompt & Tools ---
+# Docker completions
+fpath=(/Users/dhyanshyam/.docker/completions $fpath)
+autoload -Uz compinit && compinit
+
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.toml)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(mamba shell hook --shell zsh)"
 eval "$(fzf --zsh)"
 
-# Docker completions
-fpath=(/Users/dhyanshyam/.docker/completions $fpath)
-autoload -Uz compinit && compinit
 
-# --- 5. Aliases ---
 # ==========================================
 # History Configs
 # ==========================================
@@ -62,7 +61,6 @@ setopt HIST_REDUCE_BLANKS              # Strip extra blank spaces
 # ==========================================
 autoload -Uz compinit && compinit      # Load completion engine
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*' # Case insensitive tab match
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 setopt CORRECT                         # Autocorrect typos in commands
 
 # Shortcuts, Navigation & Lists
@@ -70,11 +68,13 @@ alias hg="history | grep --color=always" # Keyword history search
 alias cl="clear"                       # Wipe screen
 alias home="cd ~"                      # Go home
 alias dev="cd ~/dev"                   # Go to projects folder
-alias ezsh="nano ~/.zshrc"             # Edit zsh configuration
+alias ezsh="micro ~/.zshrc"             # Edit zsh configuration
 alias szsh="source ~/.zshrc"           # Source zsh configuration
 alias ..="cd .."                       # Up 1 level
 alias ...="cd ../.."                   # Up 2 levels
 alias ....="cd ../../.."               # Up 3 levels
+alias myip="curl -s ifconfig.me"       # External IP check
+alias localip="ipconfig getifaddr en0" # Local IP check
 
 # Directory
 alias ll="eza --color=always --long --icons=always --time-style=long-iso --total-size --all" # List of folders and files
@@ -83,59 +83,63 @@ alias lst='eza --color=always --long --icons=always --no-permissions --time-styl
 # ==========================================
 # Dev Tools
 # ==========================================
-
 # Git Core & Branching
-alias ga="git add"                     # Stage changes
-alias gb="git branch"                  # Manage branches
-alias gc="git commit"                  # Save changes
-alias gcl="git clone"                  # Download repo
-alias gd="git diff"                    # View raw diffs
-alias gm="git merge"                   # Merge branch
-alias gp="git push"                    # Upload commits
-alias gsu="git submodule update"       # Sync submodules
-alias gsw="git switch"                 # Switch branch
-alias gswc="git switch -c"             # Create & switch branch
+alias ga="git add"                      # Stage changes
+alias gb="git branch -a"                # List all branches (local + remote)
+alias gc="git commit"                   # Save changes
+alias gcm="git commit -m"               # Save changes with a message
+alias gcl="git clone"                   # Download repo
+alias gd="git diff"                     # View unstaged diffs
+alias gds="git diff --staged"           # View staged diffs
+alias gm="git merge"                    # Merge branch
+alias gp="git push"                     # Upload commits
+alias gpu="git push -u origin HEAD"     # First push on a new branch
+alias gsu="git submodule update"        # Sync submodules
+alias gsw="git switch"                  # Switch branch
+alias gswc="git switch -c"              # Create & switch branch
 
 # Git History & Workspace Safeties
-alias gr1="git reset --soft HEAD~1"    # Undo the last commit
-alias grs="git restore"                # Discard local changes
-alias grss="git restore --staged"      # Unstage files
-alias ggl="git log --oneline --graph --all" # Linear history graph
-alias gsta="git stash push -m"         # Label and shelf changes
-alias gst="git status -s"              # Short status table
-alias gf="git fetch --prune"           # Fetch & prune dead remotes
-alias gl="git pull --rebase"           # Linear safe sync pull
-alias gstp="git stash pop"             # Restore shelf changes
+alias gca="git commit --amend --no-edit" # Fold staged changes into last commit
+alias gr1="git reset --soft HEAD~1"     # Undo last commit (keep changes staged)
+alias grs="git restore"                 # Discard local changes
+alias grss="git restore --staged"       # Unstage files
+alias glg="git log --oneline --graph --all" # Visual history graph
+alias gsta="git stash push -m"          # Stash with a label
+alias gst="git status -s"               # Short status
+alias gl="git fetch --prune && git pull --rebase" # Sync & prune dead remotes
+alias gstp="git stash pop"              # Restore last stash
+alias gclean="git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs -r git branch -D"
+alias gsh="git show --stat"
 
 # Tmux
-alias tx="tmux"                        # Launch multiplexer
-alias txl="tmux ls"                    # List active sessions
-alias txn="tmux new -s"                # New named session
-alias txa="tmux attach -t"             # Reconnect to session
-alias txk="tmux kill-session -t"       # Shut down session
-alias txka="tmux kill-server"          # Kill all sessions
+alias tx="tmux"                         # Launch multiplexer
+alias txl="tmux ls"                     # List active sessions
+alias txn="tmux new -s"                 # New named session
+alias txa="tmux attach -t"              # Reconnect to session
+alias txk="tmux kill-session -t"        # Shut down session
+alias txka="tmux kill-server"           # Kill all sessions
 
 # Ansible
-alias ap="ansible-playbook"            # Run playbook
+alias ap="ansible-playbook"             # Run playbook
 alias apc="ansible-playbook --syntax-check" # Syntax validator
-alias apv="ansible-playbook -v"        # Verbose execution debug
-alias ainv="ansible-inventory --list"  # List assets inventory
-alias ave="ansible-vault encrypt"      # Secure files/secrets
-alias avd="ansible-vault decrypt"      # Unencrypt target vault
-alias avv="ansible-vault view"         # Read vault without edits
+alias apv="ansible-playbook -v"         # Verbose execution debug
+alias ainv="ansible-inventory -i inventory --list" # List assets inventory
+alias ave="ansible-vault encrypt"       # Secure files/secrets
+alias avd="ansible-vault decrypt"       # Unencrypt target vault
+alias avv="ansible-vault view"          # Read vault without edits
 
 # Docker
-alias d="docker"                       # Container controller
-alias dc="docker-compose"              # Compose orchestrator
+alias d="docker"                        # Container controller
+alias dc="docker compose"               # Compose orchestrator
 alias dps="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}'" # Compact active process list
-alias dpa="docker ps -a"               # List all environments
-alias ddi="docker images"              # List all image artifacts
-alias dl="docker logs --tail 100 -f"   # Follow execution logs
-alias dex="docker exec -it"            # Execute active bash checks
-alias dclean="docker container prune -f" # Wipe stopped environments
-alias dprune="docker system prune -a --volumes -f" # Nuclear storage purge
+alias dpa="docker ps -a"                # List all containers
+alias di="docker images"                # List all images
+alias dl="docker logs --tail 100 -f"    # Follow container logs
+alias dex="docker exec -it"             # Open shell in container
+alias dclean="docker container prune -f" # Wipe stopped containers
+alias dprune="docker system prune -a --volumes -f" #Removes ALL containers, images, volumes
 
 # Rsync
-alias rsync-cp="rsync -ahv --progress --partial" # Safe copy with resume
-alias rsync-sync="rsync -ahv --progress --partial --delete" # Clean mirror directory
-alias rsync-ssh="rsync -ahvz -e ssh --progress --partial" # Fast compressed SSH sync
+alias rcp="rsync -ahv --progress --partial"                    # Safe copy with resume
+alias rmir="rsync -ahv --progress --partial --delete"          # Mirror directory (deletes extra files)
+alias rssh="rsync -ahvz -e ssh --progress --partial"           # Compressed copy over SSH
