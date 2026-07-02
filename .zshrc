@@ -65,14 +65,8 @@ setopt CORRECT                         # Autocorrect typos in commands
 
 # Shortcuts, Navigation & Lists
 alias hg="history | grep --color=always" # Keyword history search
-alias cl="clear"                       # Wipe screen
-alias home="cd ~"                      # Go home
-alias dev="cd ~/dev"                   # Go to projects folder
 alias ezsh="micro ~/.zshrc"             # Edit zsh configuration
 alias szsh="source ~/.zshrc"           # Source zsh configuration
-alias ..="cd .."                       # Up 1 level
-alias ...="cd ../.."                   # Up 2 levels
-alias ....="cd ../../.."               # Up 3 levels
 alias myip="curl -s ifconfig.me"       # External IP check
 alias localip="ipconfig getifaddr en0" # Local IP check
 
@@ -85,7 +79,7 @@ alias lst='eza --color=always --long --icons=always --no-permissions --time-styl
 # ==========================================
 # Git Core & Branching
 alias ga="git add"                      # Stage changes
-alias gb="git branch -a"                # List all branches (local + remote)
+alias gb="git branch"                   # List all branches (local + remote)
 alias gc="git commit"                   # Save changes
 alias gcm="git commit -m"               # Save changes with a message
 alias gcl="git clone"                   # Download repo
@@ -106,10 +100,10 @@ alias grss="git restore --staged"       # Unstage files
 alias glg="git log --oneline --graph --all" # Visual history graph
 alias gsta="git stash push -m"          # Stash with a label
 alias gst="git status -s"               # Short status
-alias gl="git fetch --prune && git pull --rebase" # Sync & prune dead remotes
 alias gstp="git stash pop"              # Restore last stash
 alias gclean="git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs -r git branch -D"
-alias gsh="git show --stat"
+alias gl="git fetch --prune && git pull --rebase && gclean" # Sync & prune dead remotes
+alias gsh="git show --stat"             # Shows the changes made in the last commit
 
 # Tmux
 alias tx="tmux"                         # Launch multiplexer
